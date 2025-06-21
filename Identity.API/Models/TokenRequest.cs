@@ -1,6 +1,6 @@
 namespace Identity.API.Models;
 
-public class TokenRequest
+public class TokenRequest()
 {
     public Guid UserId { get; init; }
     
