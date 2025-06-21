@@ -23,7 +23,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapPost("/token", (TokenGenerationRequest request, IConfiguration config) =>
+app.MapPost("/token", (TokenRequest request, IConfiguration config) =>
     {
         var jwtKey = config.GetValue<string>("Jwt:Key")!;
         var tokenHandler = new JwtSecurityTokenHandler();
@@ -59,7 +59,10 @@ app.MapPost("/token", (TokenGenerationRequest request, IConfiguration config) =>
         
         var token = tokenHandler.CreateToken(tokenDescriptor);
 
-        return tokenHandler.WriteToken(token);
+        return new TokenResponse
+        {
+            Token = tokenHandler.WriteToken(token)
+        };
     }
 )
 .WithName("Identity")
