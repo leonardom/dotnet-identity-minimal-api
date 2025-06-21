@@ -1,5 +1,5 @@
 ## Issue new token
-POST http://localhost:5279/token/
+POST {{apiBase}}/token/
 Content-Type: application/json
 
 {
